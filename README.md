@@ -111,6 +111,7 @@ To retrieve some information about the restaurants we can use the method `openRe
 
 Information about certain orders for a restaurant can be obtained through method `ordersWithStatus()` of the class `Restaurant`. Such method returns a `String` obtained by concatenating all orders satisfying the criteria.
 E.g.
+
 ```
 Napoli, Judi Dench : (19:00):
 	M6->1
@@ -123,4 +124,4 @@ The list is sorted by name of restaurant, name of the customer, and delivery tim
 
 ---
 
-Version 1.0 - 2023-04-12
+Version 1.0.1 - 2023-04-12
