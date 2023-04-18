@@ -74,16 +74,16 @@ It is possible to know whether a restaurant is open at a given time using the me
 Restaurants offer different menus, which can be added to the list of menus offered by a restaurant with the method `addMenu()` accepting as argument the `Menu` object. Such menus are linked to the restaurant and can be later used to make orders. It is possible to retrieve a menu of a restaurant given its nane using the method `getMenu()`.
 
 
-## R6 - Users
+## R6 - Customers
 
-A customer is defined by providing their first name, last name, email and phone number to the method `registerCustomer()` that returns a User object. Getters are provided for all the fields (`getFirstName()`, `getLastName()`, `getEmail()`, `getPhone()`), while setters are provided for the email and phone number only (`setEmail()`, `setPhone()`). The string representation of a `User` object returns the last name separated by a space and followed by the first name.
+A customer is defined by providing their first name, last name, email and phone number to the method `registerCustomer()` that returns a User object. Getters are provided for all the fields (`getFirstName()`, `getLastName()`, `getEmail()`, `getPhone()`), while setters are provided for the email and phone number only (`setEmail()`, `setPhone()`). The string representation of a `User` object returns the first name separated by a space and followed by the last name.
 
 To retrieve information about the customers we can use the method `customers()` of class `Takeaway` that returns a collection of customers sorted by their last name and first name.
 
 
 ## R7 - Orders
 
-A registered customer can make an order at one of the available restaurants. For such purpose method `createOrder()` of class `Takeaway` accepts as arguments the `User` object making the order, restaurant's name, and the desired delivery time (with the same format as in [R5](#r5---restaurant)). Furthermore, if for the given order delivery time is outside the working hours for the restaurant, delivery time is set to the first successive opening hour (e.g., making an order for a restaurant having working hours from *8:15* until *14:00* and from *19:00* until *00:00*, and asking for a delivery at 15:30, would result in having the delivery time set for *19:00*).
+A registered customer can make an order at one of the available restaurants. For such purpose method `createOrder()` of class `Takeaway` accepts as arguments the `User` object making the order, restaurant's name, and the desired delivery time (with the same format as in [R5](#r5-restaurant)). Furthermore, if for the given order delivery time is outside the working hours for the restaurant, delivery time is set to the first successive opening hour (e.g., making an order for a restaurant having working hours from *8:15* until *14:00* and from *19:00* until *00:00*, and asking for a delivery at 15:30, would result in having the delivery time set for *19:00*).
 
 An order can have three statuses: `ORDERED`, `READY`, `DELIVERED` accessible through setter and getter `setStatus()` and `getStatus()` (`ORDERED` by default). Furthermore, payment type for an order can be: `PAID`, `CASH`, `CARD`, accessible through setter and getter `setPaymentMethod()` and `getPaymentMethod()` (`CASH` by default).
 
