@@ -16,7 +16,7 @@ import diet.Order.OrderStatus;
 import diet.Order.PaymentMethod;
 
 
-public class ExampleAdvancedTest {
+public class TestExampleExt {
 
 	private Food foods;
 	private Takeaway takeaway;

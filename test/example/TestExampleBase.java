@@ -10,7 +10,7 @@ import diet.Menu;
 import diet.Recipe;
 
 
-public class ExampleTest {
+public class TestExampleBase {
 
 	private Food foods;
 	
