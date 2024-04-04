@@ -1,6 +1,6 @@
 # OOP Lab 3 - Diet and Restaurants
 
-(the Italian version is available in file [README_it.md](README_it.md)).
+(The Italian version is available in file [README_it.md](README_it.md)).
 
 
 Write an application to manage a diet by means of nutritional values computation.
@@ -124,4 +124,4 @@ The list is sorted by name of restaurant, name of the customer, and delivery tim
 
 ---
 
-Version 1.0.1 - 2023-04-12
+Version 1.0.2 - 2024-04-04

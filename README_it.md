@@ -1,6 +1,6 @@
 # OOP Lab 3 - Diet and Restaurants
 
-(La verione inglese è disponibile nel file [README.md](README.md)).
+(La versione Inglese è disponibile nel file [README.md](README.md)).
 
 
 Sviluppare un'applicazione che consenta di gestire la dieta tramite il calcolo dei valori nutritivi.
@@ -57,7 +57,10 @@ Inoltre la classe `Menu` implementa l'interfaccia `NutritionalElement`; in quest
 
 
 ----
+
 **Requisiti aggiuntivi**
+
+----
 
 ## R5 - Ristorante
 
@@ -120,4 +123,4 @@ La lista è ordinata per nome del ristorante, nome dell'utente ed orario di cons
 
 ---
 
-Versione 1.0 - 2023-04-12
+Versione 1.0.1 - 2024-04-04
