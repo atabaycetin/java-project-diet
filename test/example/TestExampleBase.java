@@ -68,7 +68,7 @@ public class TestExampleBase {
         foods.defineRawMaterial("Nutella", 530, 6.8, 56, 31);
         foods.defineProduct("Crackers", 111, 2.6, 17.2, 3.5);
 
-        foods.createRecipe("Pasta and Nutella")
+        failNull("Missing recipe", foods.createRecipe("Pasta and Nutella"))
         	 .addIngredient("Pasta", 70)
         	 .addIngredient("Nutella", 30);
         
@@ -84,4 +84,8 @@ public class TestExampleBase {
         assertEquals(8.7,menu1.getFat(),0.1);
 	}
 
+    private static <T> T failNull(String msg, T x){
+        assertNotNull(msg, x);
+        return x;
+    }
 }

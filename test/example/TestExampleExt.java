@@ -62,7 +62,8 @@ public class TestExampleExt {
 		foods.defineProduct("Crackers", 111, 2.6, 17.2, 3.5);
 
 		// RECIPES
-		foods.createRecipe("Pasta and Nutella").addIngredient("Pasta", 70).addIngredient("Nutella", 30);
+		failNull("Missing recipe",foods.createRecipe("Pasta and Nutella"))
+			.addIngredient("Pasta", 70).addIngredient("Nutella", 30);
 
 		foods.createRecipe("Pasta al Ragu").addIngredient("Pasta", 350).addIngredient("Onion", 100)
 				.addIngredient("Garlic", 40).addIngredient("Tomato sauce", 250).addIngredient("Red wine", 50)
@@ -244,4 +245,9 @@ public class TestExampleExt {
 		assertEquals("Wrong number of open restaurants at 11:31", 3, open.size());
 		assertTrue("Missing Napoli", open.contains(r1));
 	}
+	
+	private static <T> T failNull(String msg, T x){
+        assertNotNull(msg, x);
+        return x;
+    }
 }
