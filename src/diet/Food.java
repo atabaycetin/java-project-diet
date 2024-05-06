@@ -21,6 +21,7 @@ public class Food {
 	 */
 
 	HashMap<String, NutritionalElement> rawMaterials = new HashMap<String, NutritionalElement>();
+	HashMap<String, NutritionalElement> products = new HashMap<String, NutritionalElement>();
 
 	public void defineRawMaterial(String name, double calories, double proteins, double carbs, double fat) {
 		rawMaterial rMaterial = new rawMaterial(name, calories, proteins, carbs, fat);
@@ -45,7 +46,7 @@ public class Food {
 			System.err.println("Material Not Found");
 			return null;
 		}
-		else return rawMaterials.get(name);
+		return rawMaterials.get(name);
 
 	}
 
@@ -59,6 +60,8 @@ public class Food {
 	 * @param fat fats for a product unit
 	 */
 	public void defineProduct(String name, double calories, double proteins, double carbs, double fat) {
+		products pduct = new products(name, calories, proteins, carbs, fat);
+		products.put(name, pduct);
 	}
 
 	/**
@@ -66,7 +69,7 @@ public class Food {
 	 * @return collection of products though the {@link NutritionalElement} interface
 	 */
 	public Collection<NutritionalElement> products() {
-		return null;
+		return products.values();
 	}
 
 	/**
@@ -75,7 +78,11 @@ public class Food {
 	 * @return  a product though the {@link NutritionalElement} interface
 	 */
 	public NutritionalElement getProduct(String name) {
-		return null;
+		if (!products.containsKey(name)) {
+			System.err.println("Product Not Found");
+			return null;
+		}
+		return products.get(name);
 	}
 
 	/**
