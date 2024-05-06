@@ -1,6 +1,7 @@
 package diet;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 /**
  * Facade class for the diet management.
@@ -18,7 +19,12 @@ public class Food {
 	 * @param carbs carbs per 100g
 	 * @param fat fats per 100g
 	 */
+
+	HashMap<String, NutritionalElement> rawMaterials = new HashMap<String, NutritionalElement>();
+
 	public void defineRawMaterial(String name, double calories, double proteins, double carbs, double fat) {
+		rawMaterial rMaterial = new rawMaterial(name, calories, proteins, carbs, fat);
+		rawMaterials.put(name, rMaterial);
 	}
 
 	/**
@@ -26,7 +32,7 @@ public class Food {
 	 * @return collection of raw materials though the {@link NutritionalElement} interface
 	 */
 	public Collection<NutritionalElement> rawMaterials() {
-		return null;
+		return rawMaterials.values();
 	}
 
 	/**
@@ -35,7 +41,12 @@ public class Food {
 	 * @return  a raw material though the {@link NutritionalElement} interface
 	 */
 	public NutritionalElement getRawMaterial(String name) {
-		return null;
+		if (!rawMaterials.containsKey(name)) {
+			System.err.println("Material Not Found");
+			return null;
+		}
+		else return rawMaterials.get(name);
+
 	}
 
 	/**
