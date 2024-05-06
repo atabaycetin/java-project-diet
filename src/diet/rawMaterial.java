@@ -37,7 +37,6 @@ public class rawMaterial implements NutritionalElement{
 
     @Override
     public boolean per100g() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'per100g'");
+        return true;
     }
 }
