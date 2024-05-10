@@ -19,35 +19,52 @@ public class Recipe implements NutritionalElement {
 	 * @param quantity the amount in grams of the raw material to be used
 	 * @return the same Recipe object, it allows method chaining.
 	 */
+
+	private String name;
+	private Food food;
+	private NutritionalElement Material;
+	private double cal, protein, carb, fat;
+
+	public Recipe(String name, Food food) {
+		this.name = name;
+		this.food = food;
+	}
+
 	public Recipe addIngredient(String material, double quantity) {
-		return null;
+		Material = food.getRawMaterial(material);
+		this.protein += quantity*Material.getCarbs()/100;
+		this.cal += quantity*Material.getCalories()/100;
+		this.fat += quantity*Material.getFat()/100;
+		this.carb += quantity*Material.getCarbs()/100;
+		food.recipes.put(name, Material);
+		return this;
 	}
 
 	@Override
 	public String getName() {
-		return null;
+		return name;
 	}
 
-	
+
 	@Override
 	public double getCalories() {
-		return -1.0;
+		return cal;
 	}
 	
 
 	@Override
 	public double getProteins() {
-		return -1.0;
+		return protein;
 	}
 
 	@Override
 	public double getCarbs() {
-		return -1.0;
+		return carb;
 	}
 
 	@Override
 	public double getFat() {
-		return -1.0;
+		return fat;
 	}
 
 	/**
