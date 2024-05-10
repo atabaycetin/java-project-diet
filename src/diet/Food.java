@@ -22,6 +22,7 @@ public class Food {
 
 	HashMap<String, NutritionalElement> rawMaterials = new HashMap<String, NutritionalElement>();
 	HashMap<String, NutritionalElement> products = new HashMap<String, NutritionalElement>();
+	HashMap<String, NutritionalElement> recipes = new HashMap<String, NutritionalElement>();
 
 	public void defineRawMaterial(String name, double calories, double proteins, double carbs, double fat) {
 		rawMaterial rMaterial = new rawMaterial(name, calories, proteins, carbs, fat);
@@ -92,7 +93,9 @@ public class Food {
 	 * @return the newly created Recipe object
 	 */
 	public Recipe createRecipe(String name) {
-		return null;
+		Recipe recp = new Recipe(name, this);
+		recipes.put(name, recp);
+		return recp;
 	}
 	
 	/**
@@ -100,7 +103,7 @@ public class Food {
 	 * @return collection of recipes though the {@link NutritionalElement} interface
 	 */
 	public Collection<NutritionalElement> recipes() {
-		return null;
+		return recipes.values();
 	}
 
 	/**
@@ -109,7 +112,11 @@ public class Food {
 	 * @return  a recipe though the {@link NutritionalElement} interface
 	 */
 	public NutritionalElement getRecipe(String name) {
-		return null;
+		if (!recipes.containsKey(name)) {
+			System.err.println("Recipe Not Found!");
+			return null;
+		}
+		return recipes.get(name);
 	}
 
 	/**
