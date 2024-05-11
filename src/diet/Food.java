@@ -23,6 +23,7 @@ public class Food {
 	HashMap<String, NutritionalElement> rawMaterials = new HashMap<String, NutritionalElement>();
 	HashMap<String, NutritionalElement> products = new HashMap<String, NutritionalElement>();
 	HashMap<String, NutritionalElement> recipes = new HashMap<String, NutritionalElement>();
+	HashMap<String, NutritionalElement> menu = new HashMap<String, NutritionalElement>();
 
 	public void defineRawMaterial(String name, double calories, double proteins, double carbs, double fat) {
 		rawMaterial rMaterial = new rawMaterial(name, calories, proteins, carbs, fat);
@@ -61,8 +62,8 @@ public class Food {
 	 * @param fat fats for a product unit
 	 */
 	public void defineProduct(String name, double calories, double proteins, double carbs, double fat) {
-		products pduct = new products(name, calories, proteins, carbs, fat);
-		products.put(name, pduct);
+		products temp = new products(name, calories, proteins, carbs, fat);
+		products.put(name, temp);
 	}
 
 	/**
@@ -93,9 +94,9 @@ public class Food {
 	 * @return the newly created Recipe object
 	 */
 	public Recipe createRecipe(String name) {
-		Recipe recp = new Recipe(name, this);
-		recipes.put(name, recp);
-		return recp;
+		Recipe temp = new Recipe(name, this);
+		recipes.put(name, temp);
+		return temp;
 	}
 	
 	/**
@@ -126,6 +127,8 @@ public class Food {
 	 * @return the newly created menu
 	 */
 	public Menu createMenu(String name) {
-		return null;
+		Menu temp = new Menu(name, this);
+		menu.put(name, temp);
+		return temp;
 	}
 }
