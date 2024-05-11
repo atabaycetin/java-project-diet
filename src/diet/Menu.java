@@ -1,4 +1,7 @@
 package diet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Represents a complete menu.
@@ -17,8 +20,27 @@ public class Menu implements NutritionalElement {
 	 * @param quantity the amount in grams of the recipe to be used
 	 * @return the same Menu to allow method chaining
 	 */
+	
+	private String name;
+	private Food food;
+	private double cal, prot, carb, fat;
+
+	private HashMap<NutritionalElement, Double> recipes = new HashMap<NutritionalElement, Double>();
+	private List<NutritionalElement> products = new ArrayList<NutritionalElement>();
+
+	public Menu(String name, Food food) {
+		this.name = name;
+		this.food = food;
+	}
+
     public Menu addRecipe(String recipe, double quantity) {
-		return null;
+		NutritionalElement recp = food.getRecipe(recipe);
+		this.prot += quantity*recp.getProteins()/100;
+		this.cal += quantity*recp.getCalories()/100;
+		this.fat += quantity*recp.getFat()/100;
+		this.carb += quantity*recp.getCarbs()/100;
+		recipes.put(recp, quantity);
+		return this;
 	}
 
 	/**
@@ -30,20 +52,27 @@ public class Menu implements NutritionalElement {
 	 * @return the same Menu to allow method chaining
 	 */
     public Menu addProduct(String product) {
+		NutritionalElement prod = food.getProduct(product);
+		this.prot += prod.getProteins();
+		this.cal += prod.getCalories();
+		this.fat += prod.getFat();
+		this.carb += prod.getCarbs();
+		products.add(prod);
 		return null;
 	}
 
 	@Override
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	/**
 	 * Total KCal in the menu
 	 */
+
 	@Override
 	public double getCalories() {
-		return -1.0;
+		return cal;
 	}
 
 	/**
@@ -51,7 +80,7 @@ public class Menu implements NutritionalElement {
 	 */
 	@Override
 	public double getProteins() {
-		return -1.0;
+		return prot;
 	}
 
 	/**
@@ -59,7 +88,7 @@ public class Menu implements NutritionalElement {
 	 */
 	@Override
 	public double getCarbs() {
-		return -1.0;
+		return carb;
 	}
 
 	/**
@@ -67,7 +96,7 @@ public class Menu implements NutritionalElement {
 	 */
 	@Override
 	public double getFat() {
-		return -1.0;
+		return fat;
 	}
 
 	/**
