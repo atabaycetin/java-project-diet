@@ -1,5 +1,7 @@
 package diet;
 
+import java.util.HashMap;
+
 /**
  * Represents a recipe of the diet.
  * 
@@ -23,6 +25,7 @@ public class Recipe implements NutritionalElement {
 	private String name;
 	private Food food;
 	private NutritionalElement Material;
+	private HashMap<NutritionalElement, Double> ingredients = new HashMap<NutritionalElement, Double>();
 	private double cal, protein, carb, fat;
 
 	public Recipe(String name, Food food) {
@@ -32,11 +35,11 @@ public class Recipe implements NutritionalElement {
 
 	public Recipe addIngredient(String material, double quantity) {
 		Material = food.getRawMaterial(material);
-		this.protein += quantity*Material.getCarbs()/100;
+		this.protein += quantity*Material.getProteins()/100;
 		this.cal += quantity*Material.getCalories()/100;
 		this.fat += quantity*Material.getFat()/100;
 		this.carb += quantity*Material.getCarbs()/100;
-		food.recipes.put(name, Material);
+		ingredients.put(Material, quantity);
 		return this;
 	}
 
