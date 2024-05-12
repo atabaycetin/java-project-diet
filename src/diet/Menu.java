@@ -58,7 +58,7 @@ public class Menu implements NutritionalElement {
 		this.fat += prod.getFat();
 		this.carb += prod.getCarbs();
 		products.add(prod);
-		return null;
+		return this;
 	}
 
 	@Override
