@@ -2,27 +2,33 @@ package diet;
 
 
 public class Customer {
-	
+	private String name, email, surname, phone;
+	Customer (String name, String surname) {
+		this.name = name; this.surname = surname;
+	}
+
 	public String getLastName() {
-		return null;
+		return surname;
 	}
 	
 	public String getFirstName() {
-		return null;
+		return name;
 	}
 	
 	public String getEmail() {
-		return null;
+		return email;
 	}
 	
 	public String getPhone() {
-		return null;
+		return phone;
 	}
 	
 	public void SetEmail(String email) {
+		this.email = email;
 	}
 	
 	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 	

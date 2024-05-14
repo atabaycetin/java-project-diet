@@ -1,6 +1,10 @@
 package diet;
 
 import diet.Order.OrderStatus;
+import java.util.Collection;
+import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Represents a restaurant class with given opening times and a set of menus.
@@ -12,8 +16,16 @@ public class Restaurant {
 	 *
 	 * @return name of the restaurant
 	 */
+
+	private String name;
+	Collection<Order> orders = new ArrayList<Order>();
+
+	Restaurant (String name) { 
+		this.name = name;
+	}
+	
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	/**
@@ -25,7 +37,10 @@ public class Restaurant {
 	 *
 	 * @param hm sequence of opening and closing times
 	 */
+	public String[] hours;
 	public void setHours(String ... hm) {
+		hours = new String[hm.length];
+		hours = hm;
 	}
 
 	/**
@@ -35,6 +50,16 @@ public class Restaurant {
 	 * @return {@code true} is the restaurant is open at that time
 	 */
 	public boolean isOpenAt(String time){
+		if (time.compareTo(hours[0]) > 0) {
+			if (time.compareTo(hours[1]) < 0)
+				return true;
+			else
+				if (time.compareTo(hours[2]) > 0) {
+					if (time.compareTo(hours[3]) < 0) {
+						return true;
+					}
+				}
+		}
 		return false;
 	}
 
@@ -43,7 +68,11 @@ public class Restaurant {
 	 *
 	 * @param menu	the menu
 	 */
+
+	private Collection<Menu> menus = new ArrayList<Menu>();
+
 	public void addMenu(Menu menu) {
+		menus.add(menu);
 	}
 
 	/**
@@ -53,6 +82,9 @@ public class Restaurant {
 	 * @return menu with the given name
 	 */
 	public Menu getMenu(String name) {
+		for (Menu m : menus)
+			if (m.getName().equals(name))
+				return m;
 		return null;
 	}
 
@@ -63,6 +95,19 @@ public class Restaurant {
 	 * @return textual representation of orders
 	 */
 	public String ordersWithStatus(OrderStatus status) {
-		return null;
+		StringBuffer returnS = new StringBuffer();
+		for (Order o: orders) {
+			if (o.os == status) {
+				returnS.append(String.format("%s, %s %s : (%s):\n", 
+					o.restaurant.getName(), o.customer.getFirstName(), o.customer.getLastName(), o.time));
+				for (String key : o.menuList.keySet()) {
+					returnS.append(String.format("\t%s->%d\n", key, o.menuList.get(key)));
+				}
+			}
+		}
+		/*YOU NEED TO ORDER THE OUTPUT BY THE NAME OF THE CUSTOMERS */
+
+
+		return returnS.toString();
 	}
 }
