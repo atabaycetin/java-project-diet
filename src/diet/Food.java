@@ -1,7 +1,8 @@
 package diet;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Map;
 
 /**
  * Facade class for the diet management.
@@ -20,10 +21,10 @@ public class Food {
 	 * @param fat fats per 100g
 	 */
 
-	HashMap<String, NutritionalElement> rawMaterials = new HashMap<String, NutritionalElement>();
-	HashMap<String, NutritionalElement> products = new HashMap<String, NutritionalElement>();
-	HashMap<String, NutritionalElement> recipes = new HashMap<String, NutritionalElement>();
-	HashMap<String, NutritionalElement> menu = new HashMap<String, NutritionalElement>();
+	Map<String, NutritionalElement> rawMaterials = new TreeMap<String, NutritionalElement>();
+	Map<String, NutritionalElement> products = new TreeMap<String, NutritionalElement>();
+	Map<String, NutritionalElement> recipes = new TreeMap<String, NutritionalElement>();
+	Map<String, NutritionalElement> menu = new TreeMap<String, NutritionalElement>();
 
 	public void defineRawMaterial(String name, double calories, double proteins, double carbs, double fat) {
 		rawMaterial rMaterial = new rawMaterial(name, calories, proteins, carbs, fat);

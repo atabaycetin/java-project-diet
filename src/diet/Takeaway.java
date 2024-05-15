@@ -116,6 +116,11 @@ public class Takeaway {
 	 * @return the sorted collection of restaurants
 	 */
 	public Collection<Restaurant> openRestaurants(String time) {
-		return null;
+		Collection<Restaurant> temp = new ArrayList<Restaurant>();
+		for (Restaurant res: restaurants.values()) {
+			if (res.isOpenAt(time))
+				temp.add(res);
+		}
+		return temp;
 	}
 }

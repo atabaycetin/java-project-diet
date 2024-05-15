@@ -4,7 +4,6 @@ import diet.Order.OrderStatus;
 import java.util.Collection;
 import java.util.TreeSet;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Represents a restaurant class with given opening times and a set of menus.
@@ -18,7 +17,7 @@ public class Restaurant {
 	 */
 
 	private String name;
-	Collection<Order> orders = new ArrayList<Order>();
+	TreeSet<Order> orders = new TreeSet<Order>(new myComparator());
 
 	Restaurant (String name) { 
 		this.name = name;

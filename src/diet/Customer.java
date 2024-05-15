@@ -30,6 +30,11 @@ public class Customer {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+	@Override
+	public String toString() {
+		StringBuffer returnString = new StringBuffer();
+		returnString.append(getFirstName()).append(getLastName()).append(getEmail()).append(getPhone());
+		return returnString.toString();
+	}
 	
 }

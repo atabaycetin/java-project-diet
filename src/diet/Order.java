@@ -1,6 +1,6 @@
 package diet;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 
 /**
@@ -14,7 +14,7 @@ import java.util.Map;
  *  	MENU_NAME_k->MENU_QUANTITY_k
  * </pre>
  */
-public class Order{
+public class Order {
 
 	Customer customer;
 	Restaurant restaurant;
@@ -23,7 +23,7 @@ public class Order{
 	OrderStatus os;
 	PaymentMethod pm;
 	
-	Map<String, Integer> menuList = new HashMap<String, Integer>();
+	Map<String, Integer> menuList = new TreeMap<String, Integer>();
 
 	Order (Customer customer, Restaurant restaurant, String time, Food food) {
 		this.customer = customer; this.restaurant = restaurant; this.time = time; this.food = food;
