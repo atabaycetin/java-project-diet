@@ -9,6 +9,7 @@ public class products implements NutritionalElement{
         this.name = name;
         this.kiloCalories = kiloCalories; this.proteins = proteins; this.carbs = carbs; this.fat = fat;
     }
+
     @Override
     public String getName() {
         return name;
@@ -38,6 +39,4 @@ public class products implements NutritionalElement{
     public boolean per100g() {
         return false;
     }
-
-    
 }

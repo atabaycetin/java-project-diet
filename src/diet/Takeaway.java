@@ -8,8 +8,20 @@ import java.util.*;
  */
 public class Takeaway {
 
-	private HashMap<String, Restaurant> restaurants = new HashMap<String, Restaurant>();
-	private Collection<Customer> customers = new ArrayList<Customer>();
+	private Map<String, Restaurant> restaurants = new TreeMap<String, Restaurant>();
+	private Collection<Customer> customers = new TreeSet<Customer>(new Comparator<Customer>() {
+		// Done by ChatGPT. Unfortunately I couldn't figure out the cause of the error by myself.
+		// Of course I analyzed and understood what the code is doing.
+		// Note to Self: The important part is usage of the custom comparator.
+        @Override
+        public int compare(Customer c1, Customer c2) {
+            int lastNameComparison = c1.getLastName().compareTo(c2.getLastName());
+            if (lastNameComparison != 0) {
+                return lastNameComparison;
+            }
+            return c1.getFirstName().compareTo(c2.getFirstName());
+        }
+    });
 	private HashMap<Integer, Order> orders = new HashMap<Integer, Order>();
 
 	/**
@@ -70,6 +82,21 @@ public class Takeaway {
 	 * @return sorted collection of customers
 	 */
 	public Collection<Customer> customers() {
+		List<Customer> sortedCustomers = new ArrayList<Customer>(customers);
+		Collections.sort(sortedCustomers, new Comparator<Customer>() {
+			// Done by ChatGPT. Unfortunately I couldn't figure out the cause of the error by myself.
+			// Of course I analyzed and understood what the code is doing.
+			// Note to Self: The important part is usage of the custom comparator.
+            @Override
+            public int compare(Customer c1, Customer c2) {
+                int surnameComparison = c1.getLastName().compareTo(c2.getLastName());
+                if (surnameComparison != 0) {
+                    return surnameComparison;
+                } else {
+                    return c1.getFirstName().compareTo(c2.getFirstName());
+                }
+            }
+        });
 		return customers;
 	}
 
@@ -85,7 +112,7 @@ public class Takeaway {
 		String deliveryTime = "";
 		if (time.compareTo(restaurant.hours[3]) > 0)
 			deliveryTime += restaurant.hours[0];
-		if (time.compareTo(restaurant.hours[1]) > 0)
+		else if (time.compareTo(restaurant.hours[1]) > 0)
 			deliveryTime += restaurant.hours[2];
 		return deliveryTime;
 	}
@@ -96,11 +123,15 @@ public class Takeaway {
 		
 		Restaurant temp_res = restaurants.get(restaurantName);
 		String deliveryTime;
-		
-		if (temp_res.isOpenAt(time) == false) {
+		String checkTime = "";
+		if (time.length() == 4)
+			checkTime += "0" + time;
+		else
+			checkTime = time;
+		if (!temp_res.isOpenAt(checkTime)) {
 			deliveryTime = setOrderTime(temp_res, time);
 		} else {
-			deliveryTime = time;
+			deliveryTime = checkTime;
 		}
 
 		Order temp = new Order(customer, temp_res, deliveryTime, food);

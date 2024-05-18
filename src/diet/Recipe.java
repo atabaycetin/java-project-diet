@@ -1,6 +1,9 @@
 package diet;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Represents a recipe of the diet.
@@ -25,8 +28,9 @@ public class Recipe implements NutritionalElement {
 	private String name;
 	private Food food;
 	private NutritionalElement Material;
-	private HashMap<NutritionalElement, Double> ingredients = new HashMap<NutritionalElement, Double>();
-	private double cal, protein, carb, fat;
+	private Map<NutritionalElement, Double> ingredients = new HashMap<NutritionalElement, Double>();
+	private List<NutritionalElement> ingredient = new ArrayList<NutritionalElement>();
+	private double cal, protein, carb, fat, weight;
 
 	public Recipe(String name, Food food) {
 		this.name = name;
@@ -35,11 +39,13 @@ public class Recipe implements NutritionalElement {
 
 	public Recipe addIngredient(String material, double quantity) {
 		Material = food.getRawMaterial(material);
+		this.weight += quantity/100;
 		this.protein += quantity*Material.getProteins()/100;
 		this.cal += quantity*Material.getCalories()/100;
 		this.fat += quantity*Material.getFat()/100;
 		this.carb += quantity*Material.getCarbs()/100;
 		ingredients.put(Material, quantity);
+		ingredient.add(Material);
 		return this;
 	}
 
@@ -48,26 +54,24 @@ public class Recipe implements NutritionalElement {
 		return name;
 	}
 
-
 	@Override
 	public double getCalories() {
-		return cal;
+		return cal/weight;
 	}
-	
 
 	@Override
 	public double getProteins() {
-		return protein;
+		return protein/weight;
 	}
 
 	@Override
 	public double getCarbs() {
-		return carb;
+		return carb/weight;
 	}
 
 	@Override
 	public double getFat() {
-		return fat;
+		return fat/weight;
 	}
 
 	/**
@@ -84,5 +88,13 @@ public class Recipe implements NutritionalElement {
 	public boolean per100g() {
 		return true;
 	}
-	
+
+	@Override
+	public String toString () {
+		StringBuffer returnString = new StringBuffer();
+		for (int i = 0; i < ingredient.size(); i++)
+			returnString.append(ingredient.get(i).getName()).append("\n");
+		System.out.println(returnString);
+		return returnString.toString();
+	}
 }
