@@ -1,16 +1,17 @@
 package diet;
 
-
 public class Customer {
+
 	private String name, email, surname, phone;
-	Customer (String name, String surname) {
+
+	Customer(String name, String surname) {
 		this.name = name; this.surname = surname;
 	}
 
 	public String getLastName() {
 		return surname;
 	}
-	
+
 	public String getFirstName() {
 		return name;
 	}
@@ -30,11 +31,11 @@ public class Customer {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	@Override
 	public String toString() {
 		StringBuffer returnString = new StringBuffer();
-		returnString.append(getFirstName()).append(getLastName()).append(getEmail()).append(getPhone());
+		returnString.append(getFirstName()).append(" " + getLastName());
 		return returnString.toString();
 	}
-	
 }

@@ -49,15 +49,21 @@ public class Restaurant {
 	 * @return {@code true} is the restaurant is open at that time
 	 */
 	public boolean isOpenAt(String time){
-		if (time.compareTo(hours[0]) > 0) {
-			if (time.compareTo(hours[1]) < 0)
-				return true;
-			else
-				if (time.compareTo(hours[2]) > 0) {
-					if (time.compareTo(hours[3]) < 0) {
-						return true;
-					}
+		if (hours.length > 2) {
+			if (time.compareTo(hours[0]) >= 0) {
+				if (time.compareTo(hours[1]) <= 0) 
+					return true;
+				else
+					if (time.compareTo(hours[2]) >= 0) {
+						if (time.compareTo(hours[3]) <= 0) {
+							return true;
+						}}}
+		} else {
+			if (time.compareTo(hours[0]) >= 0) {
+				if (time.compareTo(hours[1]) <= 0) {
+					return true;
 				}
+			}
 		}
 		return false;
 	}
@@ -95,6 +101,9 @@ public class Restaurant {
 	 */
 	public String ordersWithStatus(OrderStatus status) {
 		StringBuffer returnS = new StringBuffer();
+		for (Order o: orders) {
+			System.out.println(o);
+		}
 		for (Order o: orders) {
 			if (o.os == status) {
 				returnS.append(String.format("%s, %s %s : (%s):\n", 
